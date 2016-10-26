@@ -1,1 +1,0 @@
-/home/daniel/Dropbox/hbrs/sony_api_cpp/build/CMakeFiles/sony.o.dir
