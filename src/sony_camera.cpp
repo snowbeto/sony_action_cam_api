@@ -20,11 +20,11 @@ size_t read_func(void *ptr, size_t size, size_t count, void *data_container) {
 		std::vector<uint8_t> myVector(image.begin(), image.end());
 
 		//convert image to cv::Mat from uint8_t vector
-		cv::Mat decodedImage = cv::imdecode(myVector, CV_LOAD_IMAGE_COLOR);
+		//cv::Mat decodedImage = cv::imdecode(myVector, CV_LOAD_IMAGE_COLOR);
 
-		if (decodedImage.data != NULL) {
+		if (myVector.size() > 0) {
 			//data->images.push(decodedImage);
-			data->image = decodedImage;
+			data->image = myVector;
 		} else {
 			// Error reading raw image data
 			cout << "Could not read image" << endl;
@@ -57,14 +57,14 @@ curl_easy& SACamera::get_livestream_handler() {
 ;
 
 bool SACamera::can_read_image() {
-	if (data.image.data != NULL)
+	if (data.image.size() > 0)
 		return true;
 
 	return false;
 }
 ;
-cv::Mat SACamera::get_image() {
-	return data.image.clone();
+std::vector<uint8_t> SACamera::get_image() {
+	return data.image;
 }
 
 std::string SACamera::generate_command(CameraCommand cmd) {

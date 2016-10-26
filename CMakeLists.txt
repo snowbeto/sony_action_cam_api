@@ -5,6 +5,8 @@ project( Sony_APPI )
 set(CMAKE_BUILD_TYPE  Release)
 
 set(CMAKE_CXX_FLAGS "-std=c++0x")
+#Find openCV 
+find_package( OpenCV REQUIRED )
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
 
@@ -22,4 +24,4 @@ add_executable( sony.o
 		src/sony_camera.cpp
 )
 
-target_link_libraries(sony.o -lcurlcpp -lcurl)
+target_link_libraries(sony.o -lcurlcpp -lcurl ${OpenCV_LIBS})

@@ -22,8 +22,6 @@
 #include <stdio.h>
 #include <curlpp/Easy.hpp>
 
-#include <opencv2/core.hpp>
-#include <opencv2/opencv.hpp>
 
 using std::cout;
 using std::endl;
@@ -35,7 +33,7 @@ using curl::curl_ios;
 class SACamera_Data {
 public:
 	std::string buffer;
-	cv::Mat image;
+	std::vector<uint8_t> image;
 	bool read;
 
 	SACamera_Data() :
@@ -61,7 +59,7 @@ public:
 	curl_easy& get_livestream_handler();
 
 	bool can_read_image();
-	cv::Mat get_image();
+	std::vector<uint8_t> get_image();
 
 	std::string generate_command(CameraCommand cmd);
 
